@@ -7,6 +7,10 @@ create database recipe_book;
 CREATE TABLE "ingredients" (
   "id" serial,
   "name" varchar,
+  "vegan" boolean,
+  "vegetarian" boolean,
+  "dairy_free" boolean,
+  "gluten_free" boolean,
   PRIMARY KEY ("id")
 );
 
