@@ -4,13 +4,13 @@ create database recipe_book;
 
 \c recipe_book
 
-CREATE TABLE "ingredient" (
+CREATE TABLE "ingredients" (
   "id" serial,
   "name" varchar,
   PRIMARY KEY ("id")
 );
 
-CREATE TABLE "recipe" (
+CREATE TABLE "recipes" (
   "id" serial,
   "name" varchar,
   "measure" float,
@@ -18,7 +18,7 @@ CREATE TABLE "recipe" (
   PRIMARY KEY ("id")
 );
 
-CREATE TABLE "recipe_tag" (
+CREATE TABLE "recipes_tags" (
   "id" serial,
   "recipe_id" int,
   "tag_id" int,
@@ -27,7 +27,7 @@ CREATE TABLE "recipe_tag" (
   CONSTRAINT "FK_recipe_tag.tag_id" NOT NULL
 );
 
-CREATE TABLE "recipe_ingredient" (
+CREATE TABLE "recipes_ingredients" (
   "id" serial,
   "ingredient_id" int,
   "recipe_id" int,
@@ -37,7 +37,7 @@ CREATE TABLE "recipe_ingredient" (
   CONSTRAINT "FK_recipe_ingredient.recipe_id" NOT NULL
 );
 
-CREATE TABLE "tag" (
+CREATE TABLE "tags" (
   "id" serial,
   "name" varchar,
   PRIMARY KEY ("id")
