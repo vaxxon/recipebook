@@ -131,7 +131,7 @@ dist
 
 # Credentials files
 credentials.*
-!credentials.*.SAMPLE.*
-!credentials.production.*
+credentials.*.SAMPLE.*
+credentials.production.*
 
 .vscode

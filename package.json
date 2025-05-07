@@ -2,8 +2,22 @@
   "name": "RecipeBook",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node ./recipebook.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js recipebook.js"
+  },
   "dependencies": {
+    "body-parser": "^2.2.0",
+    "bootstrap": "^5.3.6",
+    "cookie-parser": "^1.4.7",
+    "csurf": "^1.10.0",
     "express": "^5.1.0",
-    "express-handlebars": "^8.0.3"
+    "express-handlebars": "^8.0.3",
+    "express-session": "^1.18.1",
+    "lodash": "^4.17.21",
+    "pg": "^8.15.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
