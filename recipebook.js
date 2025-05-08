@@ -31,8 +31,8 @@ const recipeRouter = require('./routes/recipes')
 const ingredientRouter = require('./routes/ingredients')
 const tagRouter = require('./routes/tags')
 const recipeIngredientRouter = require('./routes/recipesIngredients')
-const recipeTagRouter = require('./routes/recipesTags')
 const userRecipeRouter = require('./routes/usersRecipes')
+// const recipeTagRouter = require('./routes/recipesTags')
 
 const app = express()
 const port = 3000
@@ -67,7 +67,7 @@ app.use('/ingredients', ingredientRouter)
 app.use('/tags', tagRouter)
 app.use('/users', usersRouter)
 app.use('/usersRecipes', userRecipeRouter)
-// app.use('/recipesIngredients', recipeIngredientRouter)
+app.use('/recipesIngredients', recipeIngredientRouter)
 // app.use('/recipesTags', recipeTagRouter)
 
 app.use((req, res) => {
