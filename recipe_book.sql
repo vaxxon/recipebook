@@ -14,11 +14,21 @@ CREATE TABLE "ingredients" (
   PRIMARY KEY ("id")
 );
 
+CREATE TABLE "users_recipes" (
+  "id" serial,
+  "user_id" int,
+  "recipe_id" int,
+  "cooked" boolean,
+  "favorite" boolean,
+  PRIMARY KEY ("id")
+);
+
+CREATE INDEX "CCK" ON  "users_recipes" ("user_id", "recipe_id");
+
 CREATE TABLE "recipes" (
   "id" serial,
   "name" varchar,
-  "measure" float,
-  "instructions" text,
+  "steps" text,
   PRIMARY KEY ("id")
 );
 
@@ -26,9 +36,7 @@ CREATE TABLE "recipes_tags" (
   "id" serial,
   "recipe_id" int,
   "tag_id" int,
-  PRIMARY KEY ("id"),
-  CONSTRAINT "FK_recipe_tag.recipe_id" NOT NULL,
-  CONSTRAINT "FK_recipe_tag.tag_id" NOT NULL
+  PRIMARY KEY ("id")
 );
 
 CREATE TABLE "recipes_ingredients" (
@@ -36,13 +44,25 @@ CREATE TABLE "recipes_ingredients" (
   "ingredient_id" int,
   "recipe_id" int,
   "measure" float,
-  PRIMARY KEY ("id"),
-  CONSTRAINT "FK_recipe_ingredient.ingredient_id" NOT NULL,
-  CONSTRAINT "FK_recipe_ingredient.recipe_id" NOT NULL
+  "uom" varchar,
+  "instruction" varchar,
+  PRIMARY KEY ("id")
+);
+
+CREATE INDEX "CCK" ON  "recipes_ingredients" ("ingredient_id", "recipe_id");
+
+CREATE TABLE "users" (
+  "id" serial,
+  "name" varchar,
+  "email" varchar,
+  "password" varchar,
+  "salt" varchar,
+  PRIMARY KEY ("id")
 );
 
 CREATE TABLE "tags" (
   "id" serial,
   "name" varchar,
+  "type" varchar,
   PRIMARY KEY ("id")
 );
