@@ -6,7 +6,7 @@ exports.all = async () => {
 }
 
 exports.add = async (recipe) => { // pass ingredients as an array of arrays? or something
-    const { rows } = await db.getPool().query('insert into recipes (title, ingredient_list) values ($1, $2) returning *', [recipe.title, recipe.ingredientList])
+    const { rows } = await db.getPool().query('insert into recipes (title) values ($1) returning *', [recipe.title])
     let newRecipe = db.camelize(rows)[0]
     await addTagsToRecipe(newRecipe, recipe.tagIds)
     return newRecipe
@@ -18,7 +18,7 @@ exports.get = async (id) => {
 }
 
 exports.update = async (recipe) => {
-    const { rows } = await db.getPool().query('update recipes set title = $1, ingredient_list = $2, where id = $3 returning *', [recipe.title, recipe.ingredientList, recipe.id])
+    const { rows } = await db.getPool().query('update recipes set title = $1, where id = $3 returning *', [recipe.title, recipe.ingredientList, recipe.id])
     let newRecipe = db.camelize(rows)[0]
     await deleteTagsForRecipe(newRecipe)
     await addTagsToRecipe(newRecipe, recipe.tagIds)

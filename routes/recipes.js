@@ -5,7 +5,7 @@ const Recipe = require('../models/recipe')
 const Ingredient = require('../models/ingredient')
 const Tag = require('../models/tag')
 const RecipeTag = require('../models/recipeTag')
-const UserRecipe = require('../models/userRecipe')
+// const UserRecipe = require('../models/userRecipe')
 
 router.get('/', async (req, res, next) => {
     const recipes = await Recipe.all()
@@ -49,9 +49,9 @@ router.get('/show/:id', async (req, res, next) => {
         tags: RecipeTag.tags
     }
     recipe.ingredients = await Ingredient.allForRecipe(recipe)
-    if (req.session.currentUser) {
-        templateVars.userRecipe = await UserRecipe.get(recipe, req.session.currentUser)
-    }
+    // if (req.session.currentUser) {
+    //     templateVars.userRecipe = await UserRecipe.get(recipe, req.session.currentUser)
+    // }
     res.render('recipes/show', templateVars)
 })
 

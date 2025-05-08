@@ -1,11 +1,5 @@
 const db = require('../database')
 
-// possible statuses --> cooked
-exports.statuses = [
-    'cooked',
-    'not cooked'
-]
-
 // get a userRecipe connection
 exports.get = async (recipe, user) => {
     const { rows } = await db.getPool().query("select * from users_recipes where recipe_id = $1 and user_id = $2", [recipe.id, user.id])
@@ -14,7 +8,7 @@ exports.get = async (recipe, user) => {
 
 // get all userRecipe connections related to a certain user
 exports.allForUser = async (user) => {
-    const { rows } = db.getPool().query("select recipes.title, users_recipes.status from users_recipes join recipes on recipes.id = users_recipes.recipe_id where user_id = $1;", [user.id])
+    const { rows } = db.getPool().query("select recipes.name, users_recipes.status from users_recipes join recipes on recipes.id = users_recipes.recipe_id where user_id = $1;", [user.id])
     return db.camelize(rows)
 }
 

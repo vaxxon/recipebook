@@ -66,9 +66,9 @@ app.use('/recipes', recipeRouter)
 app.use('/ingredients', ingredientRouter)
 app.use('/tags', tagRouter)
 app.use('/users', usersRouter)
-app.use('/users_recipes', userRecipeRouter)
-app.use('/recipes_ingredients', recipeIngredientRouter)
-app.use('/recipes_tags', recipeTagRouter)
+app.use('/usersRecipes', userRecipeRouter)
+// app.use('/recipesIngredients', recipeIngredientRouter)
+// app.use('/recipesTags', recipeTagRouter)
 
 app.use((req, res) => {
   res.status(404)
