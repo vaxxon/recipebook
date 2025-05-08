@@ -1,0 +1,25 @@
+<p><strong>Welcome to Recipe Book.</strong> Please check out all these great recipes.</p>
+<div class="row">
+    <div class="col-9">
+        <h2>Recipes</h2>
+        <ul>
+            {{#each recipes}}
+                <li><a href="/recipes/show/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+    <div class="col-3">
+        <h2>Ingredients</h2>
+        <ul>
+            {{#each ingredients}}
+                <li><a href="/ingredients/show/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
+        <h2>Tags</h2>
+        <ul>
+            {{#each tags}}
+                <li><a href="/tags/show/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
+    </div>
+</div>
