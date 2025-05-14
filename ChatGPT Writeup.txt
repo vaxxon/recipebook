@@ -1,0 +1,15 @@
+# ChatGPT Writeup
+
+I used ChatGPT for ideas on how to make the relationship between recipes and recipesIngredients, and to debug any errors that came up during the coding process.
+
+**Pros:**
+- ChatGPT is great at finding isolated syntax errors, such as in invalid SQL code. For instance, I had an insert with five values named and passed, but only four $x variables to replace. I couldn’t spot what was wrong until it pointed out that error.
+- ChatGPT is faster at writing code than I am, so it’s a good place to get long dense blocks of code written even if I need to debug and format them later.
+- I am generally confused by join operations so ChatGPT was helpful in writing a valid join.
+- ChatGPT gave good suggestions on how to debug (its own) faulty code that I had forgotten about, such as the location of browser tools and exporting JSON explaining what was being passed from during page to page and during POST requests.
+
+**Cons:**
+- The code ChatGPT writes from scratch is not plug-and-play, and it often made mistakes because it lacked context of the whole project or memory of code it had already seen or generated. I spent a lot of time debugging only to realize that it had written routers that did not have the correct inputs for the methods in the model, for instance.
+- It is difficult to explain exactly what you are looking to build to ChatGPT in such a way that it doesn’t go off on digressions, and often those digressions were outside of my knowledge of Express, so I couldn’t reliably debug code that I knew would need some editing. It definitely didn’t help that a lot of the answers were very confident until I pointed out an issue, at which point it would affirm that I was write and it was wrong, then issue a fix for code it had written.
+
+I learned that ChatGPT is a good tool for people who already know quite a bit about what they’re doing, as the code it generates from whole cloth will need a lot of debugging. It’s great at spotting incorrect or inconsistent syntax, but not so good at diagnosing issues with incompatible code between different files.
