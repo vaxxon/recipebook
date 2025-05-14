@@ -1,0 +1,7 @@
+<h1>Ingredients</h1>
+<a href="/ingredients/form">Create new ingredient</a>
+<ul>
+{{#each ingredients}}
+    <li><a href="/ingredients/edit?id={{this.id}}">{{this.name}}</a></li>    
+{{/each}}
+</ul>

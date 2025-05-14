@@ -1,0 +1,35 @@
+<div class="header">
+    <h1>{{recipe.name}}</h1>
+    <span><a href="/recipes/edit/{{recipeId}}/start">Edit</a></span>
+</div>
+<div class="tagSpace">
+{{#if recipe.tags}}
+    <p>
+    {{#each recipe.tags}}
+        <span class="tag">{{this.name}}</span>
+    {{/each}}
+    </p>
+{{/if}}
+</div>
+<h2>Ingredients</h2>
+{{#if recipe.ingredients}}
+    <div class="ingredientContainer">
+        <ul>
+        {{#each recipe.ingredients}}
+            <li>
+            <span class="measure">{{this.measure}} </span>
+            {{#if this.uom}}<span class="uom">{{this.uom}} </span>{{/if}}
+            <span>{{this.name}}</span>{{#if this.instruction}}<span>, {{this.instruction}}</span>{{/if}}
+            </li>
+        {{/each}}
+        </ul>
+    </div>
+{{else}}
+    <p>Add ingredients <a href="/recipes/edit?id={{recipeId}}">here</a>.</p>
+{{/if}}
+{{#if recipe.steps}}
+    <h2>Steps</h2>
+    <p>{{recipe.steps}}</p>
+{{else}}
+    <p>Add steps <a href="/recipes/edit?id={{recipeId}}">here</a>.</p>
+{{/if}}

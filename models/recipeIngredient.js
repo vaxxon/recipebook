@@ -7,10 +7,13 @@ exports.get = async (recipe, ingredient) => {
 }
 
 // get all recipeIngredient connections related to a certain Ingredient
-exports.allForRecipe = async (ingredient) => {
-    const { rows } = db.getPool().query("select recipes.name, recipes_ingredients.* from recipes_ingredients join recipes on recipes.id = recipes_ingredients.recipe_id where ingredient_id = $1;", [ingredient.id])
-    return db.camelize(rows)
-}
+exports.allForRecipe = async (recipe) => {
+    const { rows } = await db.getPool().query(
+        "select recipes.name as recipe_name, recipes_ingredients.*, ingredients.name as ingredient_name from recipes_ingredients join recipes on recipes.id = recipes_ingredients.recipe_id join ingredients on ingredients.id = recipes_ingredients.ingredient_id where recipe_id = $1;", 
+        [recipe.id]
+    );
+    return db.camelize(rows);
+};
 
 // add a new recipeIngredient relationship
 exports.add = async (recipeIngredient) => {
@@ -19,7 +22,10 @@ exports.add = async (recipeIngredient) => {
 
 // update an existing recipeIngredient relationship
 exports.update = async (recipeIngredient) => {
-    return await db.getPool().query("update recipes_ingredients set status = $1 where id = $2 returning *", [recipeIngredient.status, recipeIngredient.id])
+    return await db.getPool().query(
+        "update recipes_ingredients set measure = $1, uom = $2, instruction = $3 where id = $4 returning *",
+        [recipeIngredient.measure, recipeIngredient.uom, recipeIngredient.instruction, recipeIngredient.id]
+    )
 }
 
 // we also have upsert? should I deprecate the above? idk

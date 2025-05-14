@@ -1,0 +1,24 @@
+<form action="/ingredients/upsert" role="form" method="post">
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    {{#if ingredient}}
+        <h2>Editing {{ingredient.name}}</h2>
+        <input type="hidden" name="id" value="{{ingredient.id}}">
+    {{/if}}
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" {{#if ingredient}}
+        value="{{ingredient.name}}"
+    {{/if}}>
+    <label for="vegan">Vegan?</label>
+    <input type="checkbox" name="vegan" id="vegan" {{#if ingredient.vegan}}
+    checked{{/if}}>
+    <label for="vegetarian">Vegetarian?</label>
+    <input type="checkbox" name="vegetarian" id="vegetarian" {{#if ingredient.vegetarian}}
+    checked{{/if}}>
+     <label for="dairyFree">Dairy free?</label>
+    <input type="checkbox" name="dairyFree" id="dairyFree" {{#if ingredient.dairyFree}}
+    checked{{/if}}>
+    <label for="glutenFree">Gluten free?</label>
+    <input type="checkbox" name="glutenFree" id="glutenFree" {{#if ingredient.glutenFree}}
+    checked{{/if}}>
+    <button type="submit">Submit</button>
+</form>

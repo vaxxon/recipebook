@@ -12,7 +12,7 @@ exports.get = async (id) => {
 }
 
 exports.add = async (ingredient) => {
-    return await db.getPool().query("insert into ingredients (name, vegan, vegetarian, dairy_free, gluten_free) values ($1, $2, $3, $4) returning *", [ingredient.name, ingredient.vegan, ingredient.vegetarian, ingredient.dairyFree, ingredient.glutenFree])
+    return await db.getPool().query("insert into ingredients (name, vegan, vegetarian, dairy_free, gluten_free) values ($1, $2, $3, $4, $5) returning *", [ingredient.name, ingredient.vegan, ingredient.vegetarian, ingredient.dairyFree, ingredient.glutenFree])
 }
 
 exports.update = async (ingredient) => {
@@ -28,6 +28,6 @@ exports.upsert = async (ingredient) => {
 }
 
 exports.allForRecipe = async (recipe) => {
-    const { rows } = await db.getPool().query("select ingredients.* from ingredients join recipes_ingredients on recipes_ingredients.ingredient_id = ingredients.id where recipes_ingredients.recipe_id = $1;", [recipe.id])
+    const { rows } = await db.getPool().query("select ingredients.*, recipes_ingredients.measure, recipes_ingredients.uom, recipes_ingredients.instruction from ingredients join recipes_ingredients on recipes_ingredients.ingredient_id = ingredients.id where recipes_ingredients.recipe_id = $1;", [recipe.id])
     return db.camelize(rows)
 }

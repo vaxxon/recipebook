@@ -28,6 +28,6 @@ exports.upsert = async (tag) => {
 }
 
 exports.allForRecipe = async (recipe) => {
-    const { rows } = await db.getPool().query("select tags.* from tags join recipes_tags on recipes_tags.author_id = tags.id where recipes_tags.recipe_id = $1;", [recipe.id])
-    return db.camelize(rows)
+    const { rows } = await db.getPool().query("select tags.* from tags join recipes_tags on recipes_tags.tag_id = tags.id where recipes_tags.recipe_id = $1;", [recipe.id])
+    return db.camelize(rows) || []
 }

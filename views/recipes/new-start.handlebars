@@ -1,0 +1,10 @@
+<h1>Create a New Recipe</h1>
+
+<form action="/recipes/new/start" method="POST">
+  <label for="name">Recipe Name:</label>
+  <input type="text" name="name" required>
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  <button type="submit">Save Name and Add Ingredients &rarr;</button>
+</form>
+
+<p><a href="/recipes">Cancel</a></p>

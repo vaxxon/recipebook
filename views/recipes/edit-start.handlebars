@@ -1,0 +1,10 @@
+<h1>Editing {{recipe.name}}</h1>
+
+<form action="/recipes/edit/{{recipe.id}}/start" method="POST">
+    <label for="name">Recipe name</label>
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    <input type="text" id="name" name="name" value="{{recipe.name}}" required>
+    <button type="submit">Save Name and Add Ingredients &rarr;</button>
+</form>
+
+<p><a href="/recipes">Cancel</a></p>

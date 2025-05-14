@@ -20,7 +20,8 @@ const handlebars = require('express-handlebars').create({
       },
       someId: (arr, id) => arr && arr.some(obj => obj.id == id),
       in: (arr, obj) => arr && arr.some(val => val == obj),
-      dateStr: (v) => v && v.toLocaleDateString("en-US")
+      dateStr: (v) => v && v.toLocaleDateString("en-US"),
+      json: (context) => JSON.stringify(context, null, 2)
     }
   });
 const bodyParser = require('body-parser')
@@ -35,11 +36,13 @@ const userRecipeRouter = require('./routes/usersRecipes')
 // const recipeTagRouter = require('./routes/recipesTags')
 
 const app = express()
-const port = 3000
+const port = 3001
+
 app.engine('handlebars', handlebars.engine)
 app.set('view engine', 'handlebars')
 app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')))
-app.use(bodyParser.urlencoded({ extended: true }))
+
+
 app.use(cookieParser(credentials.cookieSecret))
 app.use(expressSession({
   secret: credentials.cookieSecret,
@@ -47,6 +50,8 @@ app.use(expressSession({
   saveUninitialized: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }))
+app.use(bodyParser.urlencoded({ extended: true }))
+
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
   next()

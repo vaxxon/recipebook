@@ -1,0 +1,10 @@
+<h2>Recipes</h2>
+<a href="/recipes/new/start">Create New Recipe</a>
+<div>
+    {{#each recipes}}
+        <div class="recipe">
+            <p><strong><a href="recipes/show/{{this.id}}">{{this.name}}</a></strong></p>
+            <p></p>
+        </div>
+    {{/each}}
+</div>

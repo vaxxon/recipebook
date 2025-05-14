@@ -1,0 +1,45 @@
+<h1>Edit Ingredients for {{recipe.name}}</h1>
+
+{{#if recipeIngredients.length}}
+  <ul>
+    {{#each recipeIngredients}}
+      <li>
+        {{this.measure}} {{this.uom}} {{this.ingredientName}}{{#if this.instruction}}, {{this.instruction}}{{/if}} 
+        <form method="POST" action="/recipes/edit/{{../recipe.id}}/ingredients/delete" style="display: inline;">
+            <input type="hidden" name="_csrf" value="{{../csrfToken}}">
+            <input type="hidden" name="riId" value="{{this.id}}">
+            <button type="submit">Delete</button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Add ingredients below.</p>
+{{/if}}
+
+<hr>
+
+<h2>Add Ingredient</h2>
+<form action="/recipes/edit/{{recipe.id}}/ingredients" method="POST">
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  <label>Ingredient:
+    <select name="ingredientId">
+      {{#each allIngredients}}
+        <option value="{{id}}">{{name}}</option>
+      {{/each}}
+    </select>
+  </label>
+
+  <label>Measure: <input type="text" name="measure"></label>
+  <label for="uom">UOM:</label>
+    <select name="uom">
+        {{#each uoms}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </select>
+  <label>Instruction: <input type="text" name="instruction"></label>
+
+  <button type="submit">Add Ingredient</button>
+</form>
+
+<p><a href="/recipes/edit/{{recipe.id}}/details">Edit Details &rarr;</a></p>

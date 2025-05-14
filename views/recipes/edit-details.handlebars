@@ -1,0 +1,15 @@
+<h1>Edit Details for {{recipe.name}}</h1>
+
+<form action="/recipes/edit/{{recipe.id}}/details" method="POST">
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+
+  <label for="name">Recipe Name:</label>
+  <input type="text" name="name" id="name" value="{{recipe.name}}" required>
+
+  <label for="steps">Steps:</label>
+  <textarea name="steps" id="steps" rows="6">{{recipe.steps}}</textarea>
+
+  <button type="submit">Save Details</button>
+</form>
+
+<p><a href="/recipes">Back to Recipes</a></p>
